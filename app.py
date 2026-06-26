@@ -303,12 +303,9 @@ def get_player_info(encrypted_uid, server_name, token):
 def handle_requests():
     uid = request.args.get("uid")
     server_name = request.args.get("server_name", "").upper()
-    key = request.args.get("key")
     client_ip = request.remote_addr
 
-    # API Key check - Changed to "bishal"
-    if key != "bishal":
-        return jsonify({"error": "Invalid or missing API key 🔑"}), 403
+    # KEY CHECK REMOVED - No longer needed
 
     if not uid or not server_name:
         return jsonify({"error": "UID and server_name are required"}), 400
@@ -408,9 +405,7 @@ def handle_requests():
 @app.route('/reset-cache', methods=['GET'])
 def reset_cache():
     """Reset liked cache (use carefully)"""
-    key = request.args.get("key")
-    if key != "bishal":  # Changed to "bishal"
-        return jsonify({"error": "Invalid key"}), 403
+    # KEY CHECK REMOVED - No longer needed
     
     global liked_cache
     liked_cache.clear()
@@ -424,7 +419,8 @@ if __name__ == '__main__':
     print("   - account_bd.txt (BD/RU server)")
     print("🧠 Smart feature: Tracks which accounts already liked")
     print("⚡ Only fresh accounts will send likes")
-    print("🔑 API Key: bishal")
+    print("🔑 No API key required anymore!")
+    print("📍 Endpoint: http://localhost:5001/like?uid=660456172&server_name=ind")
     app.run(host='0.0.0.0', port=5001, debug=True, use_reloader=False)
 # MINISTER LIKE API SRC UID PASSWORD 
 # POWERED BY : @minister_69

@@ -306,7 +306,8 @@ def handle_requests():
     key = request.args.get("key")
     client_ip = request.remote_addr
 
-    if key != "JMLB":
+    # API Key check - Changed to "bishal"
+    if key != "bishal":
         return jsonify({"error": "Invalid or missing API key 🔑"}), 403
 
     if not uid or not server_name:
@@ -408,7 +409,7 @@ def handle_requests():
 def reset_cache():
     """Reset liked cache (use carefully)"""
     key = request.args.get("key")
-    if key != "JMLB":
+    if key != "bishal":  # Changed to "bishal"
         return jsonify({"error": "Invalid key"}), 403
     
     global liked_cache
@@ -423,6 +424,7 @@ if __name__ == '__main__':
     print("   - account_bd.txt (BD/RU server)")
     print("🧠 Smart feature: Tracks which accounts already liked")
     print("⚡ Only fresh accounts will send likes")
+    print("🔑 API Key: bishal")
     app.run(host='0.0.0.0', port=5001, debug=True, use_reloader=False)
 # MINISTER LIKE API SRC UID PASSWORD 
 # POWERED BY : @minister_69
